@@ -1,7 +1,7 @@
 var genreList = document.getElementById('genre-list');
+var startButton = document.getElementById('Start-Button');
 
 function getApi() {
-    // replace `octocat` with anyone else's GitHub username
     var requestUrl = 'https://advanced-movie-search.p.rapidapi.com/genre/movie/list';
   
     var options = {
@@ -19,12 +19,14 @@ function getApi() {
       .then(function (data) {
         console.log(data);
         for(var i = 0; i < data.genres.length; i++){
-            var listItem = document.createElement('li');
+            var listItem = document.createElement('button');
             console.log(data.genres[i].name);
             listItem.textContent = data.genres[i].name;
             genreList.appendChild(listItem);
         }
       });
+
+    startButton.style.display = "none";
   }
 
-  getApi();
+startButton.addEventListener('click', getApi);
