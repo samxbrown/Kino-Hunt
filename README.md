@@ -24,6 +24,8 @@ Once you have the project set up locally, you can:
 
 ## Screenshot
 
+![Alt text](<Screenshot 2023-07-24 at 8.10.31 PM.png>)
+
 ## Credits
 
 We would like to credit all of the developers who worked on this code Sam Brown, Aleksey Nizhnikov, and Geon Kang.
