@@ -2,6 +2,8 @@
 
 ## Description
 
+This repository contains a codebase for a movie database website the provides information for movies based on genres. The goal is to optimize the site so that searching for movies is easy.
+
 ## Installation
 
 To run and modify this project locally, follow these steps:
