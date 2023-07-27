@@ -35,6 +35,7 @@ function getGenre() {
 startButton.addEventListener('click', getGenre);
 
 function getMovieList(clicked_id) {
+  console.log("hi");
   var requestUrl = 'https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=' + clicked_id + '&page=1';
 
   var options = {
@@ -50,23 +51,26 @@ function getMovieList(clicked_id) {
       return response.json();
     })
     .then(function (data) {
-      for (var i = 0; i < data.results.length; i++) {
-        getIMDB(data.results[i].original_title);
-      }
+        getIMDB(data.results);
     });
 }
 
 
 
-function getIMDB(title) {
-  var search = "";
-  var arr = title.split(' ');
-  for(var i = 0; i < arr.length-1; i++){
-    search = search + arr[i] + "%20";
+function getIMDB(results) {
+  var title = [];
+  
+  for(var i = 0; i < results.length; i++){
+    title[i] = results[i].original_title.replace(' ','%20');
   }
-  search = search + arr[arr.length-1];
-  console.log(search);
-  var requestUrl = 'https://imdb8.p.rapidapi.com/title/find?q=' + search;
+
+  console.log(title);
+
+  for(var i = 0; i < title.length; i++){
+    title[i] = 'https://imdb8.p.rapidapi.com/title/find?q=' + title[i];
+  }
+
+  console.log(title);
 
   var options = {
     method: 'GET',
@@ -75,12 +79,21 @@ function getIMDB(title) {
       'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
     }
   };
-  
-  fetch(requestUrl, options)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log('imdb.com'+data.results[0].id);
-    });
+  var i = 0
+  var intv = setInterval(function(){
+        if(i < title.length){
+        fetch(title[i], options)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            console.log('imdb.com'+data.results[0].id);
+          });
+          i++;
+        }
+        else {
+          clearInterval(intv);
+          i = 0;
+        }
+  }, 200);
 }
