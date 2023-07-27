@@ -27,6 +27,8 @@ function getGenre() {
         })
         genreList.appendChild(listItem);
       }
+      var dropdownData = data.map(item => genre.name);
+      createDropdown(dropdownData);
     });
 
   startButton.style.display = "none";
@@ -84,3 +86,7 @@ function getIMDB(title) {
       console.log('imdb.com'+data.results[0].id);
     });
 }
+
+function refreshPage(){
+  window.location.reload();
+} 
