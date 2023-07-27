@@ -1,7 +1,7 @@
 var genreList = document.getElementById('genre-list');
 var startButton = document.getElementById('Start-Button');
 
-function getApi() {
+function getGenre() {
   var requestUrl = 'https://advanced-movie-search.p.rapidapi.com/genre/movie/list';
 
   var options = {
@@ -32,7 +32,7 @@ function getApi() {
   startButton.style.display = "none";
 }
 
-startButton.addEventListener('click', getApi);
+startButton.addEventListener('click', getGenre);
 
 function getMovieList(clicked_id) {
   var requestUrl = 'https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=' + clicked_id + '&page=1';
@@ -51,20 +51,27 @@ function getMovieList(clicked_id) {
     })
     .then(function (data) {
       for (var i = 0; i < data.results.length; i++) {
-        console.log(data.results[i].original_title);
+        getIMDB(data.results[i].original_title);
       }
     });
 }
 
 
 
-function getApi() {
-  var requestUrl = 'https://rapidapi.com/apidojo/api/imdb8/';
+function getIMDB(title) {
+  var search = "";
+  var arr = title.split(' ');
+  for(var i = 0; i < arr.length-1; i++){
+    search = search + arr[i] + "%20";
+  }
+  search = search + arr[arr.length-1];
+  console.log(search);
+  var requestUrl = 'https://imdb8.p.rapidapi.com/title/find?q=' + search;
 
   var options = {
-    method: GET,
+    method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '0016bc5315mshb1bd2817991d6eep173fa0jsnb7451757afa6',
+      'X-RapidAPI-Key': 'cb55d331c2msheffcf3623997c3bp1fc0f2jsn2b8f997e3c9f',
       'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
     }
   };
@@ -73,3 +80,7 @@ function getApi() {
     .then(function (response) {
       return response.json();
     })
+    .then(function (data) {
+      console.log('imdb.com'+data.results[0].id);
+    });
+}
