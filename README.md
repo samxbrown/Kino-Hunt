@@ -30,7 +30,7 @@ Once you have the project set up locally, you can:
 
 ## Credits
 
-We would like to credit all of the developers who worked on this code Sam Brown, Aleksey Nizhnikov, and Geon Kang.
+We would like to credit all of the developers who worked on this code Sam Brown, Aleksey Nizhnikov, and Geon Kang as well as our instructor and TA.
 
 ## License
 
