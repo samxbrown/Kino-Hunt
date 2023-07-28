@@ -27,8 +27,7 @@ function getGenre() {
         })
         genreList.appendChild(listItem);
       }
-      var dropdownData = data.map(item => genre.name);
-      createDropdown(dropdownData);
+      
     });
 
   startButton.style.display = "none";
