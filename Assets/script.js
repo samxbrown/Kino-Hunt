@@ -7,7 +7,7 @@ function getGenre() {
   var options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': 'fd4074fae1msh6b1818e765fa4bbp1324bajsn12b9c926a636',
+      'X-RapidAPI-Key': '0016bc5315mshb1bd2817991d6eep173fa0jsnb7451757afa6',
       'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
     }
   };
@@ -41,7 +41,7 @@ function getMovieList(clicked_id) {
   var options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': 'fd4074fae1msh6b1818e765fa4bbp1324bajsn12b9c926a636',
+      'X-RapidAPI-Key': '0016bc5315mshb1bd2817991d6eep173fa0jsnb7451757afa6',
       'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
     }
   };
@@ -60,10 +60,14 @@ function getMovieList(clicked_id) {
 function getIMDB(results) {
   var title = [];
   var url = [];
-  var genreButton = document.getElementsByClassName('genre');
-  while(genreButton.length > 0){
-    genreButton[0].remove();
-  }
+
+  removeGenre();
+  var waitText = document.createElement('h1');
+  waitText.textContent = "Now Loading ...";
+  waitText.setAttribute('id', 'title');
+  waitText.setAttribute('class', 'button is-dark is-large fade-in-text');
+  genreList.appendChild(waitText);
+
   
   for(var i = 0; i < results.length; i++){
     title[i] = results[i].original_title;
@@ -73,12 +77,10 @@ function getIMDB(results) {
     url[i] = 'https://imdb8.p.rapidapi.com/title/find?q=' + title[i].replace(' ','%20');
   }
 
-  console.log(url);
-
   var options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': 'fd4074fae1msh6b1818e765fa4bbp1324bajsn12b9c926a636',
+      'X-RapidAPI-Key': '0016bc5315mshb1bd2817991d6eep173fa0jsnb7451757afa6',
       'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
     }
   };
@@ -95,16 +97,33 @@ function getIMDB(results) {
             listItem.textContent = data.results[0].title;
             listItem.setAttribute('id', data.results[0].id);
             listItem.setAttribute('class', 'movie');
+            listItem.style.display = 'none';
             listItem.setAttribute('onclick',"location.href='https://imdb.com"+data.results[0].id+"'");
             genreList.appendChild(listItem);
           });
           i++;
         }
         else {
+          document.getElementById('title').remove();
+          showMovies();
           clearInterval(intv);
           i = 0;
         }
-  }, 250);
+  }, 350);
+}
+
+function removeGenre(){
+  var genreButton = document.getElementsByClassName('genre');
+  while(genreButton.length > 0){
+    genreButton[0].remove();
+  }
+}
+
+function showMovies(){
+  var movieButton = document.getElementsByClassName('movie');
+  for(var i = 0; i < movieButton.length; i++){
+    movieButton[i].style.display = 'inline-block';
+  }
 }
 
 function refreshPage(){
