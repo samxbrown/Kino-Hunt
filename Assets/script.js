@@ -1,7 +1,7 @@
 var genreList = document.getElementById('genre-list');
 var startButton = document.getElementById('Start-Button');
 
-function getApi() {
+function getGenre() {
   var requestUrl = 'https://advanced-movie-search.p.rapidapi.com/genre/movie/list';
 
   var options = {
@@ -27,14 +27,17 @@ function getApi() {
         })
         genreList.appendChild(listItem);
       }
+      var dropdownData = data.map(item => genre.name);
+      createDropdown(dropdownData);
     });
 
   startButton.style.display = "none";
 }
 
-startButton.addEventListener('click', getApi);
+startButton.addEventListener('click', getGenre);
 
 function getMovieList(clicked_id) {
+  console.log("hi");
   var requestUrl = 'https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=' + clicked_id + '&page=1';
 
   var options = {
@@ -50,26 +53,55 @@ function getMovieList(clicked_id) {
       return response.json();
     })
     .then(function (data) {
-      for (var i = 0; i < data.results.length; i++) {
-        console.log(data.results[i].original_title);
-      }
+        getIMDB(data.results);
     });
 }
 
 
 
-function getApi() {
-  var requestUrl = 'https://rapidapi.com/apidojo/api/imdb8/';
+function getIMDB(results) {
+  var title = [];
+  
+  for(var i = 0; i < results.length; i++){
+    title[i] = results[i].original_title.replace(' ','%20');
+  }
+
+  console.log(title);
+
+  for(var i = 0; i < title.length; i++){
+    title[i] = 'https://imdb8.p.rapidapi.com/title/find?q=' + title[i];
+  }
+
+  console.log(title);
 
   var options = {
-    method: GET,
+    method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '0016bc5315mshb1bd2817991d6eep173fa0jsnb7451757afa6',
+      'X-RapidAPI-Key': 'cb55d331c2msheffcf3623997c3bp1fc0f2jsn2b8f997e3c9f',
       'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
     }
   };
-  
-  fetch(requestUrl, options)
-    .then(function (response) {
-      return response.json();
-    })
+
+  var i = 0
+  var intv = setInterval(function(){
+        if(i < title.length){
+        fetch(title[i], options)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            console.log('imdb.com'+data.results[0].id);
+          });
+          i++;
+        }
+        else {
+          clearInterval(intv);
+          i = 0;
+        }
+  }, 200);
+}
+
+function refreshPage(){
+  window.location.reload();
+} 
+
