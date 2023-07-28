@@ -45,14 +45,14 @@ function getMovieList(clicked_id) {
       'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
     }
   };
-
-  fetch(requestUrl, options)
+  setTimeout(() => 
+    fetch(requestUrl, options)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
         getIMDB(data.results);
-    });
+    }), 300);
 }
 
 
