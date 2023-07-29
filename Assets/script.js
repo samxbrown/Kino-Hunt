@@ -109,7 +109,7 @@ function getIMDB(results) {
           clearInterval(intv);
           i = 0;
         }
-  }, 350);
+  }, 1250);
 }
 
 function removeGenre(){
