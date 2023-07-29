@@ -7,7 +7,7 @@ function getGenre() {
   var options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '0016bc5315mshb1bd2817991d6eep173fa0jsnb7451757afa6',
+      'X-RapidAPI-Key': '2778a8bb70mshdc89ff7dadfe79ap15ae15jsna4aa1dcf4d98',
       'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
     }
   };
@@ -41,7 +41,7 @@ function getMovieList(clicked_id) {
   var options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '0016bc5315mshb1bd2817991d6eep173fa0jsnb7451757afa6',
+      'X-RapidAPI-Key': '2778a8bb70mshdc89ff7dadfe79ap15ae15jsna4aa1dcf4d98',
       'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
     }
   };
