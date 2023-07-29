@@ -27,7 +27,7 @@ function getGenre() {
         })
         genreList.appendChild(listItem);
       }
-      
+
     });
 
   startButton.style.display = "none";
@@ -45,14 +45,14 @@ function getMovieList(clicked_id) {
       'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
     }
   };
-  setTimeout(() => 
+  setTimeout(() =>
     fetch(requestUrl, options)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
         getIMDB(data.results);
-    }), 300);
+      }), 300);
 }
 
 
@@ -68,13 +68,13 @@ function getIMDB(results) {
   waitText.setAttribute('class', 'button is-dark is-large fade-in-text');
   genreList.appendChild(waitText);
 
-  
-  for(var i = 0; i < results.length; i++){
+
+  for (var i = 0; i < results.length; i++) {
     title[i] = results[i].original_title;
   }
 
-  for(var i = 0; i < title.length; i++){
-    url[i] = 'https://imdb8.p.rapidapi.com/title/find?q=' + title[i].replace(' ','%20');
+  for (var i = 0; i < title.length; i++) {
+    url[i] = 'https://imdb8.p.rapidapi.com/title/find?q=' + title[i].replace(' ', '%20');
   }
 
   var options = {
@@ -86,47 +86,48 @@ function getIMDB(results) {
   };
 
   var i = 0
-  var intv = setInterval(function(){
-        if(i < url.length){
-        fetch(url[i], options)
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (data) {
-            var listItem = document.createElement('button');
-            listItem.textContent = data.results[0].title;
-            listItem.setAttribute('id', data.results[0].id);
-            listItem.setAttribute('class', 'movie');
-            listItem.style.display = 'none';
-            listItem.setAttribute('onclick',"location.href='https://imdb.com" + data.results[0].id + "'");
-            genreList.appendChild(listItem);
-          });
-          i++;
-        }
-        else {
-          document.getElementById('title').remove();
-          showMovies();
-          clearInterval(intv);
-          i = 0;
-        }
+  var intv = setInterval(function () {
+    if (i < url.length) {
+      fetch(url[i], options)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          var listItem = document.createElement('button');
+          listItem.textContent = data.results[0].title;
+          listItem.setAttribute('id', data.results[0].id);
+          listItem.setAttribute('class', 'movie');
+          listItem.style.display = 'none';
+          listItem.setAttribute('onclick', "location.href='https://imdb.com" + data.results[0].id + "'");
+          genreList.appendChild(listItem);
+        });
+      i++;
+    }
+    else {
+      document.getElementById('title').remove();
+      showMovies();
+      clearInterval(intv);
+      i = 0;
+    }
   }, 1250);
+  localStorage.setItem('movieNames', JSON.stringify(title))
 }
 
-function removeGenre(){
+function removeGenre() {
   var genreButton = document.getElementsByClassName('genre');
-  while(genreButton.length > 0){
+  while (genreButton.length > 0) {
     genreButton[0].remove();
   }
 }
 
-function showMovies(){
+function showMovies() {
   var movieButton = document.getElementsByClassName('movie');
-  for(var i = 0; i < movieButton.length; i++){
+  for (var i = 0; i < movieButton.length; i++) {
     movieButton[i].style.display = 'inline-block';
   }
 }
 
-function refreshPage(){
+function refreshPage() {
   window.location.reload();
-} 
+}
 
