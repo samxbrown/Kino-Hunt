@@ -23,6 +23,12 @@ Once you have the project set up locally, you can:
 * Modify the HTML and CSS files to customize the website according to your needs.
 * Add additional content, images, and styles as required.
 * Test the website for accessibility by ensuring it meets the acceptance criteria mentioned above.
+* Technology Used:
+ * HTML
+ * Bulma CSS
+ * Javascript
+ * APIs - (https://rapidapi.com/apidojo/api/imdb8, https://rapidapi.com/jakash1997/api/advanced-movie-search)
+ * VS Code
 
 ## Screenshot
 
