@@ -47,18 +47,20 @@
   }
 
   .genre {
-    padding: 10px;
+    padding: 0;
+    border: none;
+    background: none;
     border-radius: 10%;
     display: flex;
     font-size: 1rem;
     font-weight: bolder;
     font-family: 'Kanit', sans-serif;
-    background-color: black;
+    background-color: 0, 0%, 21%;
     text-align: center;
     align-items: center;
     justify-content: space-between;
     
-    margin: 10px;
+    margin: 50px;
     margin-left: auto;
     margin-right: auto;
     color: #000000;
@@ -66,11 +68,7 @@
       0 0 7px #fff,
       0 0 10px #fff,
       0 0 21px #fff,
-      0 0 42px #0fa,
-      0 0 82px #0fa,
-      0 0 92px #0fa,
-      0 0 102px #0fa,
-      0 0 151px #0fa;
+      0 0 20px #0fa;
     
   }
   
@@ -82,7 +80,7 @@
   button:hover {
     
     
-    border: 5px solid rgb(190, 197, 255);
+    border: 5px solid #0fa;
     color: black;
     box-shadow: 0px 0px 2px 2px;
     cursor: pointer;
@@ -90,21 +88,26 @@
   }
   
   .movie {
-    padding: 10px;
-    border-radius: 5%;
-    display: grid;
-    place-items: center;
+    padding: 0;
+    border: none;
+    background: none;
+    border-radius: 10%;
+    display: flex;
     font-size: 1rem;
     font-weight: bolder;
     font-family: 'Kanit', sans-serif;
-    flex-direction: column;
+    background-color: 0, 0%, 21%;
     text-align: center;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
-    margin: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    text-shadow: 0 0 10px pink;
+    
+    margin: 50px;
+    
+    color: #000000;
+    text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 20px #0fa;
     
   }
