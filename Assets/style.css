@@ -2,7 +2,7 @@
     font-family: 'Kanit', sans-serif;
     font-size: 60px;
   }
-
+/* fade in for title */
   .fade-in-text {
     
     animation: fadeIn 5s;
@@ -45,7 +45,7 @@
     0% { opacity: 0; }
     100% { opacity: 1; }
   }
-
+/* styling for genre buttons */
   .genre {
     padding: 0;
     border: none;
@@ -86,7 +86,7 @@
     cursor: pointer;
     transition: all 0.1s ease-in-out;
   }
-  
+  /* styling for movie buttons */
   .movie {
     padding: 0;
     border: none;

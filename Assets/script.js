@@ -1,6 +1,7 @@
 var genreList = document.getElementById('genre-list');
 var startButton = document.getElementById('Start-Button');
 
+// function to get the list genres from the movie database API
 function getGenre() {
   var requestUrl = 'https://advanced-movie-search.p.rapidapi.com/genre/movie/list';
 
@@ -12,6 +13,7 @@ function getGenre() {
     }
   };
 
+  // fetch request to gather the API genre list and the a for loop so that when the genre button is clicked the list of matching genre movies appear
   fetch(requestUrl, options)
     .then(function (response) {
       return response.json();
@@ -34,7 +36,7 @@ function getGenre() {
 }
 
 startButton.addEventListener('click', getGenre);
-
+//  function to show movie list after selecing the specific genre button
 function getMovieList(clicked_id) {
   var requestUrl = 'https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=' + clicked_id + '&page=1';
 
@@ -56,7 +58,7 @@ function getMovieList(clicked_id) {
 }
 
 
-
+// function to gather IMDb results and remove the genre buttons
 function getIMDB(results) {
   var title = [];
   var url = [];
@@ -85,6 +87,7 @@ function getIMDB(results) {
     }
   };
 
+  // function to transfer user from Kino Hunt website to IMDb after selecting movie title
   var i = 0
   var intv = setInterval(function () {
     if (i < url.length) {
