@@ -80,7 +80,7 @@ function getIMDB(results) {
   var options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '0016bc5315mshb1bd2817991d6eep173fa0jsnb7451757afa6',
+      'X-RapidAPI-Key': '2778a8bb70mshdc89ff7dadfe79ap15ae15jsna4aa1dcf4d98',
       'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
     }
   };
@@ -98,7 +98,7 @@ function getIMDB(results) {
             listItem.setAttribute('id', data.results[0].id);
             listItem.setAttribute('class', 'movie');
             listItem.style.display = 'none';
-            listItem.setAttribute('onclick',"location.href='https://imdb.com"+data.results[0].id+"'");
+            listItem.setAttribute('onclick',"location.href='https://imdb.com" + data.results[0].id + "'");
             genreList.appendChild(listItem);
           });
           i++;
