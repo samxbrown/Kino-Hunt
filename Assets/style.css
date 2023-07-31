@@ -1,9 +1,10 @@
 .title {
   font-family: 'Kanit', sans-serif;
   font-size: 60px;
-  
+
 }
 
+/* fade in for title */
 .fade-in-text {
 
   animation: fadeIn 5s;
@@ -12,7 +13,7 @@
   -o-animation: fadeIn 5s;
   -ms-animation: fadeIn 5s;
 }
-
+/* fade in for genre buttons */
 .fade-in-text2 {
 
   animation: fadeIn 5s;
@@ -32,24 +33,11 @@
   }
 }
 
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
 @-webkit-keyframes fadeIn {
   0% {
     opacity: 0;
   }
 
-  100% {
-    opacity: 1;
-  }
 }
 
 @-o-keyframes fadeIn {
@@ -72,6 +60,7 @@
   }
 }
 
+/* styling for genre buttons */
 .genre {
   padding: 0;
   border: none;
@@ -114,6 +103,7 @@ button:hover {
   transition: all 0.1s ease-in-out;
 }
 
+/* styling for movie buttons */
 .movie {
   padding: 0;
   border: none;
