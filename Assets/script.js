@@ -79,6 +79,9 @@ function getIMDB(results) {
       listItem.textContent = results[i].title;
       listItem.setAttribute('id', url[i]);
       listItem.setAttribute('class', 'movie');
+      if(localStorage.getItem(url[i]) == "visited"){
+        listItem.style.color = "white";
+      }
       listItem.style.display = 'inline-block';
       listItem.addEventListener('click', function (){
         goToIMDB(this.id);
@@ -89,6 +92,8 @@ function getIMDB(results) {
 }
 
 function goToIMDB(id){
+  localStorage.setItem(id,"visited");
+
   var options = {
     method: 'GET',
     headers: {
