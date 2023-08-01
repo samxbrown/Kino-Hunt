@@ -9,7 +9,7 @@ function getGenre() {
   var options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '2778a8bb70mshdc89ff7dadfe79ap15ae15jsna4aa1dcf4d98',
+      'X-RapidAPI-Key': '94efe2b7bamshb0aa51691d2cb15p1f6982jsn1f78fdd4a1ac',
       'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
     }
   };
@@ -43,7 +43,7 @@ function getMovieList(clicked_id) {
   var options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '2778a8bb70mshdc89ff7dadfe79ap15ae15jsna4aa1dcf4d98',
+      'X-RapidAPI-Key': '94efe2b7bamshb0aa51691d2cb15p1f6982jsn1f78fdd4a1ac',
       'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
     }
   };
@@ -83,7 +83,7 @@ function getIMDB(results) {
   var options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '2778a8bb70mshdc89ff7dadfe79ap15ae15jsna4aa1dcf4d98',
+      'X-RapidAPI-Key': '94efe2b7bamshb0aa51691d2cb15p1f6982jsn1f78fdd4a1ac',
       'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
     }
   };
@@ -113,7 +113,7 @@ function getIMDB(results) {
       clearInterval(intv);
       i = 0;
     }
-  }, 350);
+  }, 1250);
   localStorage.setItem('movieNames', JSON.stringify(title))
 }
 

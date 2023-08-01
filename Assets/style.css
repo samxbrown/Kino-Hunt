@@ -89,12 +89,15 @@
 
 button {
   display: inline-block;
+  border: 2px solid transparent;
+  padding: .5%;
+  
 
 }
 
 button:hover {
 
-  font-size: large;
+  
   border: 2px solid #0fa;
   padding: .5%;
   color: black;
