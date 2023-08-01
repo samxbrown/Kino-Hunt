@@ -1,6 +1,7 @@
 var genreList = document.getElementById('genre-list');
 var startButton = document.getElementById('Start-Button');
 
+
 // function to get the list genres from the movie database API
 function getGenre() {
   var requestUrl = 'https://advanced-movie-search.p.rapidapi.com/genre/movie/list';
@@ -29,7 +30,6 @@ function getGenre() {
         })
         genreList.appendChild(listItem);
       }
-
     });
 
   startButton.style.display = "none";
@@ -55,6 +55,7 @@ function getMovieList(clicked_id) {
       .then(function (data) {
         getIMDB(data.results);
       }), 300);
+      
 }
 
 
@@ -112,7 +113,7 @@ function getIMDB(results) {
       clearInterval(intv);
       i = 0;
     }
-  }, 1250);
+  }, 350);
   localStorage.setItem('movieNames', JSON.stringify(title))
 }
 
@@ -133,4 +134,7 @@ function showMovies() {
 function refreshPage() {
   window.location.reload();
 }
+
+
+
 
