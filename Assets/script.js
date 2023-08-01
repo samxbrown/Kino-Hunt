@@ -79,6 +79,7 @@ function getIMDB(results) {
       listItem.textContent = results[i].title;
       listItem.setAttribute('id', url[i]);
       listItem.setAttribute('class', 'movie');
+      listItem.style.display = 'inline-block';
       listItem.addEventListener('click', function (){
         goToIMDB(this.id);
       });
@@ -116,13 +117,6 @@ function removeGenre() {
   var genreButton = document.getElementsByClassName('genre');
   while (genreButton.length > 0) {
     genreButton[0].remove();
-  }
-}
-
-function showMovies() {
-  var movieButton = document.getElementsByClassName('movie');
-  for (var i = 0; i < movieButton.length; i++) {
-    movieButton[i].style.display = 'inline-block';
   }
 }
 
