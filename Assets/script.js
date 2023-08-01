@@ -80,7 +80,7 @@ function getIMDB(results) {
       listItem.setAttribute('id', url[i]);
       listItem.setAttribute('class', 'movie');
       if(localStorage.getItem(url[i]) == "visited"){
-        listItem.style.color = "white";
+        listItem.style.color = "purple";
       }
       listItem.style.display = 'inline-block';
       listItem.addEventListener('click', function (){
