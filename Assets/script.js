@@ -9,7 +9,7 @@ function getGenre() {
   var options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '94efe2b7bamshb0aa51691d2cb15p1f6982jsn1f78fdd4a1ac',
+      'X-RapidAPI-Key': '993d902a67msh4385d0fab854befp18d3d6jsnf2eb30b04e6d',
       'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
     }
   };
@@ -43,7 +43,7 @@ function getMovieList(clicked_id) {
   var options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '94efe2b7bamshb0aa51691d2cb15p1f6982jsn1f78fdd4a1ac',
+      'X-RapidAPI-Key': '993d902a67msh4385d0fab854befp18d3d6jsnf2eb30b04e6d',
       'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
     }
   };
@@ -61,16 +61,9 @@ function getMovieList(clicked_id) {
 
 // function to gather IMDb results and remove the genre buttons
 function getIMDB(results) {
+  removeGenre();
   var title = [];
   var url = [];
-
-  removeGenre();
-  var waitText = document.createElement('h1');
-  waitText.textContent = "Now Loading ...";
-  waitText.setAttribute('id', 'title');
-  waitText.setAttribute('class', 'button is-dark is-large fade-in-text');
-  genreList.appendChild(waitText);
-
 
   for (var i = 0; i < results.length; i++) {
     title[i] = results[i].original_title;
@@ -80,41 +73,43 @@ function getIMDB(results) {
     url[i] = 'https://imdb8.p.rapidapi.com/title/find?q=' + title[i].replace(' ', '%20');
   }
 
+  // function to transfer user from Kino Hunt website to IMDb after selecting movie title
+  for(var i = 0; i < url.length; i++){
+      var listItem = document.createElement('button');
+      listItem.textContent = results[i].title;
+      listItem.setAttribute('id', url[i]);
+      listItem.setAttribute('class', 'movie');
+      listItem.addEventListener('click', function (){
+        goToIMDB(this.id);
+      });
+      genreList.appendChild(listItem);
+      i++;
+    }
+}
+
+function goToIMDB(id){
   var options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '94efe2b7bamshb0aa51691d2cb15p1f6982jsn1f78fdd4a1ac',
+      'X-RapidAPI-Key': '993d902a67msh4385d0fab854befp18d3d6jsnf2eb30b04e6d',
       'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
     }
   };
 
-  // function to transfer user from Kino Hunt website to IMDb after selecting movie title
-  var i = 0
-  var intv = setInterval(function () {
-    if (i < url.length) {
-      fetch(url[i], options)
+  fetch(id, options)
         .then(function (response) {
           return response.json();
         })
         .then(function (data) {
-          var listItem = document.createElement('button');
-          listItem.textContent = data.results[0].title;
-          listItem.setAttribute('id', data.results[0].id);
-          listItem.setAttribute('class', 'movie');
-          listItem.style.display = 'none';
-          listItem.setAttribute('onclick', "location.href='https://imdb.com" + data.results[0].id + "'");
-          genreList.appendChild(listItem);
+          window.open('https://imdb.com'+data.results[0].id, "_self");
         });
-      i++;
-    }
-    else {
-      document.getElementById('title').remove();
-      showMovies();
-      clearInterval(intv);
-      i = 0;
-    }
-  }, 1250);
-  localStorage.setItem('movieNames', JSON.stringify(title))
+  
+  removeMovies();
+  var waitText = document.createElement('h1');
+  waitText.textContent = "Now Loading ...";
+  waitText.setAttribute('id', 'title');
+  waitText.setAttribute('class', 'button is-dark is-large fade-in-text');
+  genreList.appendChild(waitText);
 }
 
 function removeGenre() {
@@ -128,6 +123,13 @@ function showMovies() {
   var movieButton = document.getElementsByClassName('movie');
   for (var i = 0; i < movieButton.length; i++) {
     movieButton[i].style.display = 'inline-block';
+  }
+}
+
+function removeMovies() {
+  var movieButton = document.getElementsByClassName('movie');
+  while (movieButton.length > 0) {
+    movieButton[0].remove();
   }
 }
 
